@@ -19,6 +19,11 @@ export default new Router({
       path: '/wiki',
       name: 'Document',
       component: Document
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search
     }
   ]
 })
