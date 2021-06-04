@@ -1,13 +1,16 @@
 <template>
   <div class="document">
     <div class="left-document-container">
-        <ul v-for="document in documentList" :key="document">
-            <li>{{document.title}}</li>
+        <ul v-for="(document, index) in documentList" :key="document">
+            <li>
+              <button class="title" v-on:click="currentDoc= index">
+                {{document.title}}
+              </button>
+            </li>
         </ul>
     </div>
     <div class="right-document-container">
-      It's a digital currency in which encryption techniques are used to regulate the generation of units of currency 
-      and verify the transfer of funds, operating independently of a central bank.
+      <p>{{documentList[currentDoc].body}}</p>
     </div>
   </div>
 </template>
@@ -19,7 +22,8 @@ export default {
   name: 'Document',
   data(){
       return {
-          documentList: []
+          documentList: [],
+          currentDoc: 0,
       }
   },
   firestore: {
@@ -42,5 +46,10 @@ export default {
     .right-document-container{
         width: 70%;
         background-color: hotpink;
+    }
+    .title {
+      padding: 0;
+      border: none;
+      background: none;
     }
 </style>
