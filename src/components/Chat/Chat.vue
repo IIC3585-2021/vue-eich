@@ -20,12 +20,11 @@ export default {
 		InitializeData,
 		ConversationContainer
 	},
-	computed: {
-		...mapState({
+	computed: mapState({
 			conversations: state => state.conversations.all,
 			convoIds: state => state.conversations.allIds
 		})
-	},
+	,
 }
 </script>
 

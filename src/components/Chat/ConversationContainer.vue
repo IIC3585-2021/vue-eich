@@ -1,6 +1,7 @@
   
 <template>
   <div>
+		holaaaa
 		Conversation ID: {{ id }}
 		<hr>
 		<Message 

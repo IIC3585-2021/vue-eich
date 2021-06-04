@@ -1,17 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import firebase from 'firebase'
-import 'firebase/firestore'
-
 import users from './users'
 import conversations from './conversations'
 
-import firebase from '../firebase/firebase'
+import {db} from '../firebase/firebase';
 
 Vue.use(Vuex)
 
 const state = {
-	db: firebase.firestore()
+	db: db
 }
 
 export default new Vuex.Store({
