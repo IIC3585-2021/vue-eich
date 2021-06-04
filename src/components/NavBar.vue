@@ -4,7 +4,8 @@
         <router-link :to="{ name: 'Document' }">Documentos</router-link>
         <!-- <router-link :to="{ name: 'Search' }">Buscador</router-link>
         <router-link :to="{ name: 'Ideas' }">Generación de Ideas</router-link>
-        <router-link :to="{ name: 'Questions' }">Preguntas - Respuestas</router-link> -->
+         -->
+        <router-link :to="{ name: 'Questions' }">Preguntas - Respuestas</router-link>
 
     </div> 
 </template>

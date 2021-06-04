@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Document from '@/components/Document'
+import Chat from '@/components/Chat/Chat'
 import { firestorePlugin } from 'vuefire'
 
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/wiki',
       name: 'Document',
       component: Document
+    },
+    {
+      path: '/qa',
+      name: 'Questions',
+      component: Chat
     }
   ]
 })
