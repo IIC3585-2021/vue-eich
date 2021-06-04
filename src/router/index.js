@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Document from '@/components/Document'
 import { firestorePlugin } from 'vuefire'
+import Search from '@/components/Search'
 
 
 Vue.use(Router)
