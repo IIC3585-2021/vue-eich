@@ -1,15 +1,14 @@
 <template>
   <div class="document">
     <div class="left-document-container">
-        <ul v-for="(document, index) in documentList" :key="document">
-            <li>
-              <button class="title" v-on:click="currentDoc= index">
+        <div v-for="(document, index) in documentList" :key="document">
+              <button class="menu-item" v-on:click="currentDoc= index">
                 {{document.title}}
               </button>
-            </li>
-        </ul>
+        </div>
     </div>
     <div class="right-document-container">
+      <p class="title"> {{documentList[currentDoc].title}} </p>
       <p>{{documentList[currentDoc].body}}</p>
     </div>
   </div>
@@ -38,18 +37,34 @@ export default {
         height: 90vh;
         display: flex;
         flex-direction: row;
+        color: #25427b;
     }
     .left-document-container{
         width: 30%;
-        background-color: honeydew;
+        padding: 0;
+        border: none;
+        background: #DFE0E1;
+        width: calc(22vw - .5px);
+        border-right: .5px solid #25427B;
+;
     }
     .right-document-container{
         width: 70%;
-        background-color: hotpink;
+        background-color: white;
     }
-    .title {
-      padding: 0;
+    .menu-item {
+      padding: 8px;
       border: none;
       background: none;
+      font-size: 1.3vw;
+      border-bottom: .5px solid #25427B;
+      font-weight: 400;
+      width: 100%;
+    }
+
+    .title {
+      color: #081E39;
+      font-size: 2vw;
+      font-weight: 600;
     }
 </style>
