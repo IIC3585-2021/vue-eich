@@ -1,28 +1,46 @@
 <template>
     <div>
-        <div>
+        <div v-show=show>
             <div>
                 <p>title</p>
             </div>
             <div>
                 <p>Ingrese su palabra o frase</p>
                 <form @submit.prevent="processForm">
-                    <input type="text" placeholder="Palabra" name="phrase">
+                    <input v-model="phrase" type="text" placeholder="Palabra" name="phrase">
                     <input type="submit" value="Submit">
                 </form>
             </div>
+        </div>
+        <div class="document" v-show=!show>
+            <div class="left-document-container">
+                <ul v-for="(document, index) in documentIndexes" :key="document">
+                    <li>
+                    <button class="title" v-on:click="currentDoc= index">
+                        {{documentList[document.document].title}}
+                    </button>
+                    </li>
+                </ul>
+            </div>
+            <!-- <div class="right-document-container">
+                <p>{{documentList[currentDoc].body}}</p>
+            </div> -->
         </div>
     </div>
 </template>
 
 <script>
-import openai from '../AI/openAi';
 import {db} from '../firebase/firebase';
+import axios from 'axios';
+import apiKey from '../variables/apiKey';
 
 export default {
     data(){
         return{
-            phrase: ''
+            phrase: '',
+            show: true,
+            documentList: [],
+            documentIndexes: []
         }
     },
     methods:{
@@ -39,27 +57,64 @@ export default {
             })
 
             console.log("???", documents2)
+            this.documentList = documents2
 
-            // console.log(typeof documents)
-            // console.log(documents.map((document) => {
-            //     document.body
-            // }))
+            const headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer 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"
+            }
   
 
-            const getAi = async function() {
-                const gptResponse = await openai.search({
-                    engine: 'davinci',
-                    documents: documents.map(()=> {
-
-                    }),
-                    query: ths.phrase
-
-
+            const getAi = async function(documents, phrase) {
+                console.log("DOCUMENTS", documents, typeof documents)
+                let bosy = [];
+                documents.forEach(element => {
+                    bosy.push(element.body)
                 });
-                console.log(gptResponse.data)
+                console.log("!!!!", bosy)
+                const response = await axios.post('https://api.openai.com/v1/engines/davinci/search', {
+                    documents: bosy,
+                    query: phrase
+                },{
+                headers: headers
+                }).then(
+                    (response) => {
+                        return response;
+                    }
+                ).catch((error) => {console.log(error)})
+                console.log("WII", response.data)
+                return response
             }
+            const response = await getAi(documents2, this.phrase)
+            console.log("$$$$", typeof this.phrase, response.data.data)
+            const sorted = response.data.data.sort((a, b) => (a.score < b.score)? 1: -1)
+            console.log(sorted)
+            this.documentIndexes = sorted
+            this.show = false
             // getAi
         }
     }
 }
 </script>
+
+<style scoped>
+    .document{
+        width: 100vw;
+        height: 90vh;
+        display: flex;
+        flex-direction: row;
+    }
+    .left-document-container{
+        width: 30%;
+        background-color: honeydew;
+    }
+    .right-document-container{
+        width: 70%;
+        background-color: hotpink;
+    }
+    .title {
+      padding: 0;
+      border: none;
+      background: none;
+    }
+</style>
