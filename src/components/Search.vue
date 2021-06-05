@@ -66,14 +66,12 @@ export default {
   
 
             const getAi = async function(documents, phrase) {
-                console.log("DOCUMENTS", documents, typeof documents)
-                let bosy = [];
+                let bodies = [];
                 documents.forEach(element => {
-                    bosy.push(element.body)
+                    bodies.push(element.body)
                 });
-                console.log("!!!!", bosy)
                 const response = await axios.post('https://api.openai.com/v1/engines/davinci/search', {
-                    documents: bosy,
+                    documents: bodies,
                     query: phrase
                 },{
                 headers: headers
