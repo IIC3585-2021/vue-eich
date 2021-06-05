@@ -61,7 +61,7 @@ export default {
 
             const headers = {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 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"
+                "Authorization": "Bearer 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"
             }
   
 
