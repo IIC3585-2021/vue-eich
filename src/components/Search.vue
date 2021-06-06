@@ -16,15 +16,16 @@
             <div class="left-document-container">
                 <ul v-for="(document, index) in documentIndexes" :key="document">
                     <li>
-                    <button class="title" v-on:click="currentDoc= index">
+                    <button class="menu-item" v-on:click="currentDoc = index">
                         {{documentList[document.document].title}}
                     </button>
                     </li>
                 </ul>
             </div>
-            <!-- <div class="right-document-container">
-                <p>{{documentList[currentDoc].body}}</p>
-            </div> -->
+            <div class="right-document-container">
+              <p class="title"> {{documentList[currentDoc].title}} </p>
+              <p>{{documentList[currentDoc].body}}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -40,7 +41,8 @@ export default {
             phrase: '',
             show: true,
             documentList: [],
-            documentIndexes: []
+            documentIndexes: [],
+            currentDoc: 0,
         }
     },
     methods:{
@@ -95,23 +97,38 @@ export default {
 </script>
 
 <style scoped>
-    .document{
+        .document{
         width: 100vw;
         height: 90vh;
         display: flex;
         flex-direction: row;
+        color: #25427b;
     }
     .left-document-container{
         width: 30%;
-        background-color: honeydew;
+        padding: 0;
+        border: none;
+        background: #DFE0E1;
+        width: calc(22vw - .5px);
+        border-right: .5px solid #25427B;
+;
     }
     .right-document-container{
         width: 70%;
-        background-color: hotpink;
+        background-color: white;
     }
-    .title {
-      padding: 0;
+    .menu-item {
+      padding: 8px;
       border: none;
       background: none;
+      font-size: 1.3vw;
+      border-bottom: .5px solid #25427B;
+      font-weight: 400;
+      width: 100%;
+    }
+    .title {
+      color: #081E39;
+      font-size: 2vw;
+      font-weight: 600;
     }
 </style>
