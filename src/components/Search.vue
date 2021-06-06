@@ -14,18 +14,18 @@
         </div>
         <div class="document" v-show=!show>
             <div class="left-document-container">
-                <ul v-for="(document, index) in documentIndexes" :key="document">
-                    <li>
+                <div v-for="(document, index) in documentIndexes" :key="document">
                     <button class="menu-item" v-on:click="currentDoc = index">
                         {{documentList[document.document].title}}
                     </button>
-                    </li>
-                </ul>
+                </div>
             </div>
+          
             <div class="right-document-container">
               <p class="title"> {{documentList[currentDoc].title}} </p>
               <p>{{documentList[currentDoc].body}}</p>
             </div>
+            
         </div>
     </div>
 </template>
@@ -63,7 +63,7 @@ export default {
 
             const headers = {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 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"
+                "Authorization": "Bearer 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"
             }
 
             const getAi = async function(documents, phrase) {
@@ -92,6 +92,9 @@ export default {
             this.show = false
             // getAi
         }
+    },
+    firestore: {
+        documentList: db.collection('documents')
     }
 }
 </script>
