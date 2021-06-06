@@ -1,24 +1,17 @@
 <template>
-    <div>
-        <div>
-            <div>
-                <div class="document">
-                    <div class="left-document-container">
-                        <ul v-for="(document, index) in favouritesList" :key="document">
-                            <li>
-                                <button class="title" v-on:click="currentDoc= index">
-                                    {{document.title}}
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="right-document-container">
-                        <p class="title"> {{favouritesList[currentDoc].title}} </p>
-                        <p>{{favouritesList[currentDoc].body}}</p>
-                    </div>
-                </div>
-
-            </div>
+    <div class="document">
+        <div class="left-document-container">
+            <ul v-for="(document, index) in favouritesList" :key="document">
+                <li>
+                    <button class="title" v-on:click="currentDoc= index">
+                        {{document.title}}
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="right-document-container">
+            <p class="title"> {{favouritesList[currentDoc].title}} </p>
+            <p>{{favouritesList[currentDoc].body}}</p>
         </div>
     </div>
 </template>
@@ -31,7 +24,8 @@ export default {
     name: 'Favourites',
     data(){
         return {
-            favouritesList: []
+            favouritesList: [],
+            currentDoc: 0,
         }
     },
     created() {
@@ -62,11 +56,10 @@ export default {
 
                 })
             })
-            
             console.log("VEAMOS EL RESULTADO", this.favouritesList)
 
         }
-    }
+    },
 }
 
 </script>
