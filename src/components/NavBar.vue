@@ -1,9 +1,9 @@
 <template>
     <div class="nav-bar">
-        <router-link :to="{ name: 'Hello' }">Home</router-link>
-        <router-link :to="{ name: 'Document' }">Documentos</router-link>
-        <router-link :to="{ name: 'Search' }">Buscador</router-link>
-        <router-link :to="{ name: 'Favourites' }">Favourites</router-link>
+        <router-link :to="{ name: 'Hello' }" class="logo">WikiEich</router-link>
+        <router-link :to="{ name: 'Document' }" class="other">Documentos</router-link>
+        <router-link :to="{ name: 'Search' }" class="other">Buscador</router-link>
+        <router-link :to="{ name: 'Favourites' }" class="other">Favourites</router-link>
         <!-- <router-link :to="{ name: 'Questions' }">Preguntas - Respuestas</router-link> -->
 
     </div> 
