@@ -7,8 +7,13 @@ export default new Vuex.Store({
 
     state:{
 
-        counter: 5
+        favourites: []
 
-    }
+    },
+    mutations: {
+        save (state, id) {
+          state.favourites.push(id)
+        }
+      }
 
 })

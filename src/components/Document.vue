@@ -1,10 +1,11 @@
 <template>
   <div class="document">
     <div class="left-document-container">
-        <div v-for="(document, index) in documentList" :key="document">
+        <div class="document-title" v-for="(document, index) in documentList" :key="document">
               <button class="menu-item" v-on:click="currentDoc= index">
                 {{document.title}}
               </button>
+              <button class="favourite" v-on:click="save(document.id)">Guardar</button>
         </div>
     </div>
     <div class="right-document-container">
@@ -16,6 +17,7 @@
 
 <script>
 import {db} from '../firebase/firebase';
+import store from '../store/store';
 
 export default {
   name: 'Document',
@@ -24,6 +26,16 @@ export default {
           documentList: [],
           currentDoc: 0,
       }
+  },
+  methods: {
+    save: (id) => {
+      const favs = store.state.favourites
+      if (!(id in favs)){
+        console.log("BIEN")
+        store.commit('save', id)
+      }
+      console.log("GUARDADO", store.state.favourites)
+    }
   },
   firestore: {
       documentList: db.collection('documents')
@@ -38,6 +50,10 @@ export default {
         display: flex;
         flex-direction: row;
         color: #25427b;
+    }
+    .document-title{
+      display: flex;
+      flex-direction: row;
     }
     .left-document-container{
         width: 30%;
