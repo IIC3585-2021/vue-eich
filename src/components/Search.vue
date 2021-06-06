@@ -61,9 +61,8 @@ export default {
 
             const headers = {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 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"
+                "Authorization": "Bearer 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"
             }
-  
 
             const getAi = async function(documents, phrase) {
                 let bodies = [];
