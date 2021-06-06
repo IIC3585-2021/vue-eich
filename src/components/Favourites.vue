@@ -2,19 +2,21 @@
     <div>
         <div>
             <div>
-                <p>title</p>
-            </div>
-            <div>
-                <p>Tus textos favoritos son:</p>
-                <div class="left-document-container">
-                <ul v-for="(document, index) in favouritesList" :key="document">
-                    <li>
-                    <button class="title" v-on:click="currentDoc= index">
-                        {{document.title}}
-                    </button>
-                    </li>
-                </ul>
-            </div>
+                <div class="document">
+                    <div class="left-document-container">
+                        <ul v-for="(document, index) in favouritesList" :key="document">
+                            <li>
+                                <button class="title" v-on:click="currentDoc= index">
+                                    {{document.title}}
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right-document-container">
+                        <p class="title"> {{favouritesList[currentDoc].title}} </p>
+                        <p>{{favouritesList[currentDoc].body}}</p>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -32,19 +34,21 @@ export default {
             favouritesList: []
         }
     },
-    mounted: () =>{
-        console.log("YEY")
+    created() {
         const favouritesList = []
         const favouritesIds = store.state.favourites
-        console.log("WWW", favouritesIds, favouritesIds.length)
 
         favouritesIds.forEach(async (id) => {
-            console.log("WOWO", id)
-            const veamos = await db.collection('documents').doc(id).get()
-            console.log("SII", veamos.data)
+            await db.collection('documents').doc(id).get().then(
+                snapshot => {
+                    const document = snapshot.data()
+                    favouritesList.push(document)
+                }
+            ).catch((err) => {
+                console.log(err)
+            })
         })
-            
-        console.log("···", store.state.favourites)
+        this.favouritesList = favouritesList
     },
     methods:{
         getFavourites: () => {
@@ -66,3 +70,40 @@ export default {
 }
 
 </script>
+
+<style scoped>
+    .document{
+        width: 100vw;
+        height: 90vh;
+        display: flex;
+        flex-direction: row;
+        color: #25427b;
+    }
+    .left-document-container{
+        width: 30%;
+        padding: 0;
+        border: none;
+        background: #DFE0E1;
+        width: calc(22vw - .5px);
+        border-right: .5px solid #25427B;
+;
+    }
+    .right-document-container{
+        width: 70%;
+    }
+    .menu-item {
+      padding: 8px;
+      border: none;
+      background: none;
+      font-size: 1.3vw;
+      border-bottom: .5px solid #25427B;
+      font-weight: 400;
+      width: 100%;
+    }
+
+    .title {
+      color: #081E39;
+      font-size: 2vw;
+      font-weight: 600;
+    }
+</style>
