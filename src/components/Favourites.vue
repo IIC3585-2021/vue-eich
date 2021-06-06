@@ -1,19 +1,23 @@
 <template>
-    <div class="document">
+<div>
+    <div class="document" v-if="favouritesList.length != 0">
         <div class="left-document-container">
-            <ul v-for="(document, index) in favouritesList" :key="document">
-                <li>
-                    <button class="title" v-on:click="currentDoc= index">
-                        {{document.title}}
-                    </button>
-                </li>
-            </ul>
+            <div v-for="(document, index) in favouritesList" :key="document">
+              <button class="menu-item" v-on:click="currentDoc= index">
+                  {{document.title}}
+              </button>
+            </div>
         </div>
         <div class="right-document-container">
             <p class="title"> {{favouritesList[currentDoc].title}} </p>
             <p>{{favouritesList[currentDoc].body}}</p>
         </div>
     </div>
+    <div  class="right-document-container" v-if="favouritesList.length == 0">
+      <p> No tienes ningún favorito</p>
+    </div>
+</div>
+    
 </template>
 
 <script>
