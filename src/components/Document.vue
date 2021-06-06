@@ -6,6 +6,7 @@
               <button class="title" v-on:click="currentDoc= index">
                 {{document.title}}
               </button>
+              <button class="favourite" v-on:click="save(document.id)">Guardar</button>
             </li>
         </ul>
     </div>
@@ -17,6 +18,7 @@
 
 <script>
 import {db} from '../firebase/firebase';
+import store from '../store/store';
 
 export default {
   name: 'Document',
@@ -25,6 +27,16 @@ export default {
           documentList: [],
           currentDoc: 0,
       }
+  },
+  methods: {
+    save: (id) => {
+      const favs = store.state.favourites
+      if (!(id in favs)){
+        console.log("BIEN")
+        store.commit('save', id)
+      }
+      console.log("GUARDADO", store.state.favourites)
+    }
   },
   firestore: {
       documentList: db.collection('documents')

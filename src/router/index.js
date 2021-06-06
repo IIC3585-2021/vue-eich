@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Document from '@/components/Document'
 import { firestorePlugin } from 'vuefire'
 import Search from '@/components/Search'
+import Favourites from '@/components/Favourites'
 
 
 Vue.use(Router)
@@ -25,6 +26,11 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/favourites',
+      name: 'Favourites',
+      component: Favourites
     }
   ]
 })
