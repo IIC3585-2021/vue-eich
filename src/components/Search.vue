@@ -63,7 +63,7 @@ export default {
 
             const headers = {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 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"
+                "Authorization": "Bearer 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"
             }
 
             const getAi = async function(documents, phrase) {

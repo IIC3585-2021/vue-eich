@@ -1,2 +1,2 @@
-const apiKey = 'sk-Bnb54nYd8JLFPvv1mV3bwl7M9ivJOpmMNNJmnBRV';
+const apiKey = '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';
 export default apiKey;
