@@ -1,7 +1,7 @@
   
 <template>
   <div>
-		Conversation ID: {{ id }}
+		<!-- Conversation ID: {{ id }} -->
 		<hr>
 		<Message 
 			v-for="message in conversation.messages" 
