@@ -3,7 +3,7 @@
         <router-link :to="{ name: 'Hello' }" class="logo">WikiEich</router-link>
         <router-link :to="{ name: 'Document' }" class="other">Documentos</router-link>
         <router-link :to="{ name: 'Search' }" class="other">Buscador</router-link>
-        <router-link :to="{ name: 'Favourites' }" class="other">Favourites</router-link>
+        <router-link :to="{ name: 'Favourites' }" class="other">Favorites</router-link>
         <router-link :to="{ name: 'Questions' }">Preguntas - Respuestas</router-link>
 
     </div> 

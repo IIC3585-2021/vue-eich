@@ -12,7 +12,7 @@
         <div class="document" v-show=!show>
             <div class="left-document-container">
                 <div v-for="(document, index) in documentIndexes" :key="index">
-                    <button class="menu-item" v-on:click="currentDoc = index">
+                    <button class="menu-item" v-on:click="currentDoc = document.document">
                         {{documentList[document.document].title}}
                     </button>
                 </div>
