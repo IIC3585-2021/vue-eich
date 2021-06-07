@@ -8,7 +8,7 @@
 <script>
   export default {
     name: 'InitializeData',
-		data(){
+		created(){
 			this.$store.dispatch('conversations/get')
 			this.$store.dispatch('users/get')
 
