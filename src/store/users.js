@@ -1,3 +1,5 @@
+import {db} from '../firebase/firebase'
+
 const state = {
 	all: {},
 	currentUser: 'mr_b'
@@ -11,7 +13,7 @@ const mutations = {
 
 const actions = {
 	seed ({ rootState }) {
-		let userRef = rootState.db.collection('users')
+		let userRef = db.collection('users')
 
 		userRef.doc('mr_a').set({
 			firstName: 'Andy',
@@ -30,7 +32,7 @@ const actions = {
 	},
 
 	async get ({ commit, rootState }) {
-		let userRef = rootState.db.collection('users')
+		let userRef = db.collection('users')
 		let users = await userRef.get()
 
 		users.forEach(user => commit('SET_USER', { user }))

@@ -1,7 +1,7 @@
   
 <template>
   <div>
-		Conversation ID: {{ id }}
+		<!-- Conversation ID: {{ id }} -->
 		<hr>
 		<Message 
 			v-for="message in conversation.messages" 
@@ -16,6 +16,7 @@
 <script>
 	import Message from './Message.vue'
 	import { mapState } from 'vuex'
+import {db} from '../../firebase/firebase'
   export default {
     name: 'ConversationContainer',
 		data () {
@@ -34,7 +35,7 @@
 			}
 		},
 		created () {
-			this.$props.subscribe = this.$store.state.db.collection('conversations').doc(this.id).onSnapshot(convo => {
+			this.$props.subscribe = db.collection('conversations').doc(this.id).onSnapshot(convo => {
 				let source = convo.metadata.hasPendingWrites ? 'Local' : 'Server'
 				if (convo && convo.data()) {
 					convo.data().messages.forEach(message => this.$store.commit('conversations/ADD_MESSAGE', { 

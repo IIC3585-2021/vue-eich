@@ -2,7 +2,7 @@
 <div>
     <div class="document" v-if="favouritesList.length != 0">
         <div class="left-document-container">
-            <div v-for="(document, index) in favouritesList" :key="document">
+            <div v-for="(document, index) in favouritesList" :key="index">
               <button class="menu-item" v-on:click="currentDoc= index">
                   {{document.title}}
               </button>
