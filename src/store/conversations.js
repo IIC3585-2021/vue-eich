@@ -45,11 +45,7 @@ const actions = {
 			return key
 		}
 
-		// const apiKey = await db.collection('variables').doc('api').get().then(
-		// 	snapshot => {
-		// 		return snapshot.data()
-		// 	}
-		// ).catch((err) => {console.log("EEROR", err)})
+
 		const apiKey = await getApiKey()
 		console.log("API KEY", apiKey)
 		const headers = {
