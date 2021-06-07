@@ -43,6 +43,9 @@ export default {
         }
     },
     methods:{
+        created: ()=> {
+            this.$forceUpdate();
+        },
         nose: () => {console.log("HOLA")},
         processForm: async function() {
 

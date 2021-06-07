@@ -51,7 +51,6 @@ const actions = {
 		// 	}
 		// ).catch((err) => {console.log("EEROR", err)})
 		const apiKey = await getApiKey()
-		console.log("API KEY", apiKey)
 		const headers = {
 			"Content-Type": "application/json",
 			"Authorization": apiKey.key

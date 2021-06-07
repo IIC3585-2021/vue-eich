@@ -47,6 +47,7 @@ export default {
             })
         })
         this.favouritesList = favouritesList
+        this.$forceUpdate(); 
     },
     methods:{
         getFavourites: () => {
