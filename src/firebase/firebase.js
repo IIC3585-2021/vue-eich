@@ -10,9 +10,12 @@ const firebaseConfig = {
     messagingSenderId: "301788977516",
     appId: "1:301788977516:web:1448959492a2bacc743b49"
   };
-export const db = firebase
-  .initializeApp(firebaseConfig)
-  .firestore()
+
+if (firebase.apps.length === 0) {
+  console.log("WII")
+  firebase.initializeApp(firebaseConfig);
+}
+export const db = firebase.firestore()
 
 // Export types that exists in Firestore
 // This is not always necessary, but it's used in other examples
