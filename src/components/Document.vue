@@ -1,7 +1,7 @@
 <template>
   <div class="document">
     <div class="left-document-container">
-        <div class="document-title" v-for="(document, index) in documentList" :key="document">
+        <div class="document-title" v-for="(document, index) in documentList" :key="index">
               <button class="menu-item" v-on:click="currentDoc= index">
                 {{document.title}}
               </button>

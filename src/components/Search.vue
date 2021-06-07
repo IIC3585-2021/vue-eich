@@ -11,7 +11,7 @@
         </div>
         <div class="document" v-show=!show>
             <div class="left-document-container">
-                <div v-for="(document, index) in documentIndexes" :key="document">
+                <div v-for="(document, index) in documentIndexes" :key="index">
                     <button class="menu-item" v-on:click="currentDoc = index">
                         {{documentList[document.document].title}}
                     </button>
@@ -58,9 +58,14 @@ export default {
             console.log("???", documents2)
             this.documentList = documents2
 
+            const apiKey = await db.collection('variables').doc('api').get().then(
+                snapshot => {
+                    return snapshot.data()
+                }
+            ).catch((err) => {console.log("EEROR", err)})
             const headers = {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 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"
+                "Authorization": apiKey.key
             }
 
             const getAi = async function(documents, phrase) {

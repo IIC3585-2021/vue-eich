@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import uuidv4 from 'uuid/v4'
 import axios from 'axios'
-import apiKey from '../variables/apiKey'
+// import apiKey from '../variables/apiKey'
 import {db} from '../firebase/firebase'
 
 const state = {
@@ -27,7 +27,7 @@ const mutations = {
 }
 
 const actions = {
-	sendMessage ({ commit, rootState }, { text, created, sender, conversationId }) {
+	async sendMessage ({ commit, rootState }, { text, created, sender, conversationId }) {
 		const convoRef = db.collection('conversations').doc(conversationId)
 
 		convoRef.update({
@@ -36,10 +36,26 @@ const actions = {
 		.then(res => console.log('Message sent.'))
 		.catch(err => console.log('Error', err))
 
-    const headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + apiKey
-    }
+		const getApiKey = async () => {
+			const key = await db.collection('variables').doc('api').get().then(
+				snapshot => {
+					return snapshot.data()
+				}
+			).catch((err) => {console.log("EEROR", err)})
+			return key
+		}
+
+		// const apiKey = await db.collection('variables').doc('api').get().then(
+		// 	snapshot => {
+		// 		return snapshot.data()
+		// 	}
+		// ).catch((err) => {console.log("EEROR", err)})
+		const apiKey = await getApiKey()
+		console.log("API KEY", apiKey)
+		const headers = {
+			"Content-Type": "application/json",
+			"Authorization": apiKey.key
+		}
 
       console.log('holiiiii')
       const question = "I am a highly intelligent question answering bot, If you ask me a question that is rooted in truth, I will give you the answer, If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with \"Unknown\", Q: " + text + ""
