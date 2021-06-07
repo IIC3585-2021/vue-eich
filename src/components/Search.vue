@@ -2,9 +2,6 @@
     <div>
         <div v-show=show>
             <div>
-                <p>title</p>
-            </div>
-            <div>
                 <p>Ingrese su palabra o frase</p>
                 <form @submit.prevent="processForm">
                     <input v-model="phrase" type="text" placeholder="Palabra" name="phrase">
@@ -63,7 +60,7 @@ export default {
 
             const headers = {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer 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"
+                "Authorization": "Bearer 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"
             }
 
             const getAi = async function(documents, phrase) {
@@ -117,8 +114,10 @@ export default {
 ;
     }
     .right-document-container{
-        width: 70%;
+        width: 80%;
         background-color: white;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     .menu-item {
       padding: 8px;

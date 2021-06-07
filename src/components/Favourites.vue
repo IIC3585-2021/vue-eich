@@ -86,7 +86,9 @@ export default {
 ;
     }
     .right-document-container{
-        width: 70%;
+        width: 80%;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     .menu-item {
       padding: 8px;
