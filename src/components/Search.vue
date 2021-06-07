@@ -2,9 +2,6 @@
     <div>
         <div v-show=show>
             <div>
-                <p>title</p>
-            </div>
-            <div>
                 <p>Ingrese su palabra o frase</p>
                 <form @submit.prevent="processForm">
                     <input v-model="phrase" type="text" placeholder="Palabra" name="phrase">
@@ -117,8 +114,10 @@ export default {
 ;
     }
     .right-document-container{
-        width: 70%;
+        width: 80%;
         background-color: white;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     .menu-item {
       padding: 8px;
