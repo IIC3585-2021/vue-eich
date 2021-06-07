@@ -2,6 +2,7 @@ import Vue from 'vue'
 import uuidv4 from 'uuid/v4'
 import axios from 'axios'
 import apiKey from '../variables/apiKey'
+import {db} from '../firebase/firebase'
 
 const state = {
 	all: {},
@@ -27,7 +28,7 @@ const mutations = {
 
 const actions = {
 	sendMessage ({ commit, rootState }, { text, created, sender, conversationId }) {
-		const convoRef = rootState.db.collection('conversations').doc(conversationId)
+		const convoRef = db.collection('conversations').doc(conversationId)
 
 		convoRef.update({
 			messages: [...state.all[conversationId].messages, { id: uuidv4(), created, sender, text }]
@@ -63,7 +64,7 @@ const actions = {
 	},
 	
 	seed ({ rootState }) {
-		let convoRef = rootState.db.collection('conversations')
+		let convoRef = db.collection('conversations')
 
 		convoRef.add({
 			created: Date.now(),
@@ -73,7 +74,7 @@ const actions = {
 	},
 
 	async get ({ commit, rootState }) {
-		let convoRef = rootState.db.collection('conversations')
+		let convoRef = db.collection('conversations')
 		let convos = await convoRef.get()
 
 		convos.forEach(conversation => commit('SET_CONVERSATION', { conversation }))
