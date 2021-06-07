@@ -5,6 +5,7 @@ import Document from '@/components/Document'
 import { firestorePlugin } from 'vuefire'
 import Search from '@/components/Search'
 import Favourites from '@/components/Favourites'
+import Chat from '@/components/Chat/Chat'
 
 
 Vue.use(Router)
@@ -31,6 +32,11 @@ export default new Router({
       path: '/favourites',
       name: 'Favourites',
       component: Favourites
+    },
+    {
+      path: '/qa',
+      name: 'Questions',
+      component: Chat
     }
   ]
 })
